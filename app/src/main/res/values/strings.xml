@@ -2,6 +2,7 @@
     <string name="app_name">FTheBus</string>
     <string name="welcome">Welcome to F The Bus Drinking Game!</string>
     <string name="add_player">Add player</string>
+    <string name="playerName">Player: </string>
     <string name="remove_player">Remove player</string>
     <string name="startGame">Start Game</string>
     <string name="invalidNoPlayer">You need at least 1 player to play!</string>
@@ -15,5 +16,7 @@
     <string name="same">Same</string>
     <string name="correct">Correct!</string>
     <string name="wrong">Wrong!</string>
+    <string name="noMoreCards">Ran out of cards, using new deck!</string>
+    <string name="quit">Quit</string>
 
 </resources>

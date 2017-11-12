@@ -13,7 +13,10 @@ import android.widget.TextView;
 import com.struong.fthebus.Controller.GameController;
 import com.struong.fthebus.Model.Card;
 import com.struong.fthebus.Model.GameManager;
+import com.struong.fthebus.Model.Player;
 import com.struong.fthebus.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,13 +26,15 @@ public class GameActivity extends AppCompatActivity {
     private Button bHigher;
     private Button bLower;
     private Button bSame;
+    private Button bQuit;
     private GameManager gm;
     private ArrayList<Card> initialFive;
     private ArrayList<Card> deck;
     private GameController controller;
     private ImageView current;
     private Card currentCard;
-    private TextView tvDeckLeft;
+    private Player currentPlayer;
+    private TextView tvDeckLeft, tvPlayerName;
     private String LOG_TAG = this.getClass().getName();
 
     @Override
@@ -48,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
         bHigher = (Button) findViewById(R.id.bHigher);
         bLower = (Button) findViewById(R.id.bLower);
         bSame = (Button)  findViewById(R.id.bSame);
+        bQuit = (Button) findViewById(R.id.bQuit);
 
         Bundle extras = getIntent().getExtras();
         if(extras!=null)
@@ -56,6 +62,8 @@ public class GameActivity extends AppCompatActivity {
             deck = (ArrayList<Card>) extras.get("deck");
             initialFive = (ArrayList<Card>) extras.get("initial");
         }
+
+        currentPlayer = gm.getPlayerList().get(0);
 
         for(int i = 0; i<initialFive.size(); i++)
         {
@@ -87,7 +95,9 @@ public class GameActivity extends AppCompatActivity {
 
         controller = new GameController(this, gm, initialFive);
 
+        tvPlayerName = (TextView) findViewById(R.id.tvPlayerName);
         tvDeckLeft = (TextView) findViewById(R.id.tvDeckLeft);
+        tvPlayerName.setText(getResources().getString(R.string.playerName) + " " + currentPlayer.getName());
         tvDeckLeft.setText(getResources().getString(R.string.left) + " " + deck.size());
 
         current = card5;
@@ -95,6 +105,18 @@ public class GameActivity extends AppCompatActivity {
         bHigher.setOnClickListener(controller);
         bLower.setOnClickListener(controller);
         bSame.setOnClickListener(controller);
+        bQuit.setOnClickListener(controller);
+    }
+
+    public void setCurrentPlayer(Player player)
+    {
+        currentPlayer = player;
+        tvPlayerName.setText(getResources().getString(R.string.playerName) + " " + currentPlayer.getName());
+    }
+
+    public Player getCurrentPlayer()
+    {
+        return currentPlayer;
     }
 
     public ImageView getCurrent()

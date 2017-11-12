@@ -1,13 +1,17 @@
 package com.struong.fthebus.Controller;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.struong.fthebus.Model.Card;
 import com.struong.fthebus.Model.GameManager;
+import com.struong.fthebus.Model.Player;
 import com.struong.fthebus.R;
 import com.struong.fthebus.View.GameActivity;
+import com.struong.fthebus.View.MainActivity;
 
 import java.util.ArrayList;
 
@@ -34,117 +38,161 @@ public class GameController implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         int clicked = view.getId();
-        Card card = gm.dealNextCard();
-        activity.assignImages(card, activity.getCurrent());
-        initial.remove(activity.getCurrentCard());
-        String tag = activity.getCurrent().getTag().toString();
-        initial.add(Integer.parseInt(tag)-1, card);
-        activity.updateDeckLeft();
-        Log.i(LOG_TAG, "Before : " + activity.getCurrentCard().getSuit().toString() + " " + activity.getCurrentCard().getValue() + "After : " + card.getSuit().toString() + " " + card.getValue());
-        if(clicked == R.id.bSame)
+        if(clicked == R.id.bQuit)
         {
-            Log.i(LOG_TAG, "same");
-            if(activity.getCurrentCard().getValue() == card.getValue())
+            Intent i = new Intent(activity, MainActivity.class);
+            i.putExtra("GameManager", gm);
+            activity.startActivity(i);
+        }
+        else
+        {
+            if(gm.getShuffledDeck().size()!=0)
             {
-                Log.i(LOG_TAG, "right same");
-                Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
-                if(activity.getCurrent().getTag().equals("1"))
+                Card card = gm.dealNextCard();
+                activity.assignImages(card, activity.getCurrent());
+                initial.remove(activity.getCurrentCard());
+                String tag = activity.getCurrent().getTag().toString();
+                initial.add(Integer.parseInt(tag)-1, card);
+                activity.updateDeckLeft();
+                Log.i(LOG_TAG, "Before : " + activity.getCurrentCard().getSuit().toString() + " " + activity.getCurrentCard().getValue() + "After : " + card.getSuit().toString() + " " + card.getValue());
+                if(clicked == R.id.bSame)
                 {
-                    activity.setCurrent("5");
+                    Log.i(LOG_TAG, "same");
+                    if(activity.getCurrentCard().getValue() == card.getValue())
+                    {
+                        Log.i(LOG_TAG, "right same");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
+                        if(activity.getCurrent().getTag().equals("1"))
+                        {
+                            Player next = getNextPlayer();
+                            activity.setCurrent("5");
+                            activity.setCurrentPlayer(next);
+                        }
+                        else if(activity.getCurrent().getTag().equals("2"))
+                        {
+                            activity.setCurrent("1");
+                        }
+                        else if(activity.getCurrent().getTag().equals("3"))
+                        {
+                            activity.setCurrent("2");
+                        }
+                        else if(activity.getCurrent().getTag().equals("4"))
+                        {
+                            activity.setCurrent("3");
+                        }
+                        else if(activity.getCurrent().getTag().equals("5"))
+                        {
+                            activity.setCurrent("4");
+                        }
+                    }
+                    else
+                    {
+                        Log.i(LOG_TAG, "wrong same");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
+                        activity.setCurrent("5");
+                    }
                 }
-                else if(activity.getCurrent().getTag().equals("2"))
+                else if(clicked == R.id.bHigher)
                 {
-                    activity.setCurrent("1");
+                    Log.i(LOG_TAG, "higher");
+                    if(activity.getCurrentCard().getValue() < card.getValue())
+                    {
+                        Log.i(LOG_TAG, "right higher");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
+                        if(activity.getCurrent().getTag().equals("1"))
+                        {
+                            Player next = getNextPlayer();
+                            activity.setCurrent("5");
+                            activity.setCurrentPlayer(next);
+                        }
+                        else if(activity.getCurrent().getTag().equals("2"))
+                        {
+                            activity.setCurrent("1");
+                        }
+                        else if(activity.getCurrent().getTag().equals("3"))
+                        {
+                            activity.setCurrent("2");
+                        }
+                        else if(activity.getCurrent().getTag().equals("4"))
+                        {
+                            activity.setCurrent("3");
+                        }
+                        else if(activity.getCurrent().getTag().equals("5"))
+                        {
+                            activity.setCurrent("4");
+                        }
+                    }
+                    else
+                    {
+                        Log.i(LOG_TAG, "wrong higher");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
+                        activity.setCurrent("5");
+                    }
                 }
-                else if(activity.getCurrent().getTag().equals("3"))
+                else if(clicked == R.id.bLower)
                 {
-                    activity.setCurrent("2");
-                }
-                else if(activity.getCurrent().getTag().equals("4"))
-                {
-                    activity.setCurrent("3");
-                }
-                else if(activity.getCurrent().getTag().equals("5"))
-                {
-                    activity.setCurrent("4");
+                    Log.i(LOG_TAG, "lower");
+                    if(activity.getCurrentCard().getValue() > card.getValue())
+                    {
+                        Log.i(LOG_TAG, "right higher");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
+                        if(activity.getCurrent().getTag().equals("1"))
+                        {
+                            Player next = getNextPlayer();
+                            activity.setCurrent("5");
+                            activity.setCurrentPlayer(next);
+                        }
+                        else if(activity.getCurrent().getTag().equals("2"))
+                        {
+                            activity.setCurrent("1");
+                        }
+                        else if(activity.getCurrent().getTag().equals("3"))
+                        {
+                            activity.setCurrent("2");
+                        }
+                        else if(activity.getCurrent().getTag().equals("4"))
+                        {
+                            activity.setCurrent("3");
+                        }
+                        else if(activity.getCurrent().getTag().equals("5"))
+                        {
+                            activity.setCurrent("4");
+                        }
+                    }
+                    else
+                    {
+                        Log.i(LOG_TAG, "wrong lower");
+                        Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
+                        activity.setCurrent("5");
+                    }
                 }
             }
             else
             {
-                Log.i(LOG_TAG, "wrong same");
-                Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
-                activity.setCurrent("5");
+                Toast.makeText(activity, activity.getResources().getString(R.string.noMoreCards), Toast.LENGTH_SHORT);
+
             }
         }
-        else if(clicked == R.id.bHigher)
+    }
+
+    public Player getNextPlayer()
+    {
+        ArrayList<Player> playerList = gm.getPlayerList();
+        Player current = activity.getCurrentPlayer();
+        for(int i=0; i< playerList.size(); i++)
         {
-            Log.i(LOG_TAG, "higher");
-            if(activity.getCurrentCard().getValue() < card.getValue())
+            if(current == playerList.get(i))
             {
-                Log.i(LOG_TAG, "right higher");
-                Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
-                if(activity.getCurrent().getTag().equals("1"))
+                if(i+1 > playerList.size()-1)
                 {
-                    activity.setCurrent("5");
+                    return playerList.get(0);
                 }
-                else if(activity.getCurrent().getTag().equals("2"))
+                else
                 {
-                    activity.setCurrent("1");
+                    return playerList.get(i+1);
                 }
-                else if(activity.getCurrent().getTag().equals("3"))
-                {
-                    activity.setCurrent("2");
-                }
-                else if(activity.getCurrent().getTag().equals("4"))
-                {
-                    activity.setCurrent("3");
-                }
-                else if(activity.getCurrent().getTag().equals("5"))
-                {
-                    activity.setCurrent("4");
-                }
-            }
-            else
-            {
-                Log.i(LOG_TAG, "wrong higher");
-                Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
-                activity.setCurrent("5");
             }
         }
-        else if(clicked == R.id.bLower)
-        {
-            Log.i(LOG_TAG, "lower");
-            if(activity.getCurrentCard().getValue() > card.getValue())
-            {
-                Log.i(LOG_TAG, "right higher");
-                Toast.makeText(activity, activity.getResources().getString(R.string.correct), Toast.LENGTH_SHORT);
-                if(activity.getCurrent().getTag().equals("1"))
-                {
-                    activity.setCurrent("5");
-                }
-                else if(activity.getCurrent().getTag().equals("2"))
-                {
-                    activity.setCurrent("1");
-                }
-                else if(activity.getCurrent().getTag().equals("3"))
-                {
-                    activity.setCurrent("2");
-                }
-                else if(activity.getCurrent().getTag().equals("4"))
-                {
-                    activity.setCurrent("3");
-                }
-                else if(activity.getCurrent().getTag().equals("5"))
-                {
-                    activity.setCurrent("4");
-                }
-            }
-            else
-            {
-                Log.i(LOG_TAG, "wrong lower");
-                Toast.makeText(activity, activity.getResources().getString(R.string.wrong), Toast.LENGTH_SHORT);
-                activity.setCurrent("5");
-            }
-        }
+        return null;
     }
 }
