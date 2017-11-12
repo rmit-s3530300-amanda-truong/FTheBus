@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FTheBus</string>
+    <string name="welcome">Welcome to F The Bus Drinking Game!</string>
+    <string name="add_player">Add player</string>
+    <string name="remove_player">Remove player</string>
+    <string name="startGame">Start Game</string>
+    <string name="invalidNoPlayer">You need at least 1 player to play!</string>
+    <string name="invalidNoPlayer2"> There are no players to remove!</string>
+    <string name="invalidEmpty">Name cannot be empty!</string>
+    <string name="cancel">Cancel</string>
+    <string name="playerAdded"> has been added</string>
 </resources>
