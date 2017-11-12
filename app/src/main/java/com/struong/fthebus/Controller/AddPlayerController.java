@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.struong.fthebus.Model.Card;
 import com.struong.fthebus.Model.GameManager;
 import com.struong.fthebus.Model.Player;
 import com.struong.fthebus.Model.PlayerManager;
@@ -21,6 +22,7 @@ import com.struong.fthebus.View.GameActivity;
 import com.struong.fthebus.View.MainActivity;
 import com.struong.fthebus.ViewModel.PlayerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,8 +68,13 @@ public class AddPlayerController implements View.OnClickListener{
             }
             else
             {
+                gm.createShuffledDeck();
+                ArrayList<Card> initialFive = gm.dealRound();
+                ArrayList<Card> shuffledDeck = gm.getShuffledDeck();
                 Intent i = new Intent(activity, GameActivity.class);
                 i.putExtra("GameManager", gm);
+                i.putExtra("deck", shuffledDeck);
+                i.putExtra("initial", initialFive);
                 activity.startActivity(i);
             }
         }
@@ -91,7 +98,7 @@ public class AddPlayerController implements View.OnClickListener{
                         {
                             gm.addPlayer(new Player(et.getText().toString()));
                             Log.i(LOG_TAG, gm.getPlayerList().toString());
-                            Toast.makeText(activity, et.getText().toString() + activity.getResources().getString(R.string.playerAdded), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, et.getText().toString() + " " + activity.getResources().getString(R.string.playerAdded), Toast.LENGTH_SHORT).show();
                         }
                         else
                         {

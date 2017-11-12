@@ -11,6 +11,7 @@ public class GameManager implements Serializable{
     private ArrayList<Card> shuffledDeck;
     private ArrayList<Card> initialCards;
     private boolean checkRound;
+
     private PlayerManager playerManager;
 
     public GameManager()
@@ -47,11 +48,26 @@ public class GameManager implements Serializable{
         return initialCards;
     }
 
+    public void updateInitial5(ArrayList<Card> updated)
+    {
+        initialCards = updated;
+    }
+
+    public ArrayList<Card> getInitial5()
+    {
+        return initialCards;
+    }
+
     public Card dealNextCard()
     {
         Card card = shuffledDeck.get(0);
         shuffledDeck.remove(0);
         return card;
+    }
+
+    public ArrayList<Card> getShuffledDeck()
+    {
+        return shuffledDeck;
     }
 
     public ArrayList<Player> getPlayerList()

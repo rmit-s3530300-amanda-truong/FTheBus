@@ -5,8 +5,15 @@
     <string name="remove_player">Remove player</string>
     <string name="startGame">Start Game</string>
     <string name="invalidNoPlayer">You need at least 1 player to play!</string>
-    <string name="invalidNoPlayer2"> There are no players to remove!</string>
+    <string name="invalidNoPlayer2">There are no players to remove!</string>
     <string name="invalidEmpty">Name cannot be empty!</string>
     <string name="cancel">Cancel</string>
     <string name="playerAdded"> has been added</string>
+    <string name="higher">Higher</string>
+    <string name="lower">Lower</string>
+    <string name="left">Cards left in deck:</string>
+    <string name="same">Same</string>
+    <string name="correct">Correct!</string>
+    <string name="wrong">Wrong!</string>
+
 </resources>

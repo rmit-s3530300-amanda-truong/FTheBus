@@ -4,6 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_light"
     tools:context="com.struong.fthebus.View.GameActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:background="@android:color/background_dark"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/background_dark"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintTop_creator="1">
+
+            <ImageView
+                android:id="@+id/card1"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/background_light"
+                android:tag="1"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/card2"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/background_light"
+                android:tag="2"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/card3"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/background_light"
+                android:tag="3"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/card4"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/background_light"
+                android:tag="4"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/card5"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                android:background="@android:color/background_light"
+                android:tag="5"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_dark"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDeckLeft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/background_light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bLower"
+                    android:layout_width="153dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.80"
+                    android:text="@string/lower" />
+
+                <Button
+                    android:id="@+id/bSame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/same" />
+
+                <Button
+                    android:id="@+id/bHigher"
+                    android:layout_width="153dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.56"
+                    android:text="@string/higher" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
