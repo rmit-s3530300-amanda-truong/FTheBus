@@ -101,6 +101,7 @@ public class GameActivity extends AppCompatActivity {
         tvDeckLeft.setText(getResources().getString(R.string.left) + " " + deck.size());
 
         current = card5;
+        current.setBackgroundResource(R.drawable.chosen);
 
         bHigher.setOnClickListener(controller);
         bLower.setOnClickListener(controller);
@@ -131,6 +132,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void setCurrent(String cardNo)
     {
+        current.setBackgroundResource(R.drawable.white);
         if(cardNo.equals("1"))
         {
             current = card1;
@@ -156,6 +158,7 @@ public class GameActivity extends AppCompatActivity {
             current = card5;
             currentCard = initialFive.get(4);
         }
+        current.setBackgroundResource(R.drawable.chosen);
     }
 
     public void updateDeckLeft()
